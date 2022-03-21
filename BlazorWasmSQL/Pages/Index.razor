@@ -1,0 +1,29 @@
+﻿@inject IPostService postSerivce
+
+@inject HttpClient Http
+@inject DatabaseContext database
+
+
+@inject IPostService postService
+
+@page "/"
+@using _Shared
+
+@foreach (var post in postService.GetPosts()) {
+    <div>@post.Name</div>
+}
+
+@code {
+    protected override async Task OnInitializedAsync() {
+        if (database.Posts.Count() == 0) {
+            // Now we reload our database
+            Post[] posts = await Http.GetFromJsonAsync<Post[]>("json/PostModels.json");
+            if (posts.Count() != 0) {
+                // And convert it back into SQL
+                database.Posts.AddRange(posts);
+                database.SaveChanges();
+                StateHasChanged();
+            }
+        }
+    }
+}
