@@ -5,6 +5,15 @@ I couldn't find a complete tutorial showing how to use a SQLite database with Bl
 You need 4 projects. One to hold the context, one to generate the sql database, one to convert the database to json, and finally one to convert that json back into an sql database.  
 
 
+---
+
+NOT POSSIBLE CURRENTLY. DEPLOYING THE WEB CODE WILL GET SQL ERRORS.
+
+https://github.com/dotnet/aspnetcore/issues/39528
+
+
+---
+
 ## _Shared
 
 Project that holds the context. 
